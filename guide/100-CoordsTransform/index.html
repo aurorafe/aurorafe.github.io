@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>坐标转换 - HMap.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="HMap WEBGIS openlayer">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="坐标转换 - HMap.js">
+        <meta property="og:description" content="HMap WEBGIS openlayer">
+        <meta property="og:image" content="https://hdsxtech.github.io/images/logo.png">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="坐标转换 - HMap.js">
+        <meta name="twitter:description" content="HMap WEBGIS openlayer">
+        <meta name="twitter:image" content="https://hdsxtech.github.io/images/logo.png">
+
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+
+        <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+
+        <!-- main page styles -->
+        <link rel="stylesheet" href="/css/page.css">
+
+        <!-- this needs to be loaded before guide's inline scripts -->
+        <script src="/js/HMap.js"></script>
+        <script>window.PAGE_TYPE = "guide"</script>
+    </head>
+    <body class="docs">        <div id="mobile-bar" >
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.jpg">
+    <span>HMap</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/2-index" class="nav-link current">教程</a></li>
+<li><a href="/api/1-index" class="nav-link">API</a></li>
+<li><a href="/examples/1-index/" class="nav-link">示例</a></li>
+<li><a href="/about/index" class="nav-link">参与贡献</a></li>
+<!--
+<li class="nav-dropdown-container">
+  <a class="nav-link">社区</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+    <li><a href="https://vuejsjob.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+      <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">模板</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+    </ul></li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+    </ul></li>
+    <li><h4>资源列表</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">官方仓库</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Vue 资源</a></li>
+    </ul></li>
+  </ul>
+</li>
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://vuejs.org/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+  </ul>
+</li>
+-->
+
+  </ul>
+</div>
+
+        
+            <div id="main" class="fix-sidebar">
+                
+                    <div class="sidebar blog">
+  <ul class="main-menu">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/2-index" class="nav-link current">教程</a></li>
+<li><a href="/api/1-index" class="nav-link">API</a></li>
+<li><a href="/examples/1-index/" class="nav-link">示例</a></li>
+<li><a href="/about/index" class="nav-link">参与贡献</a></li>
+<!--
+<li class="nav-dropdown-container">
+  <a class="nav-link">社区</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+    <li><a href="https://vuejsjob.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+      <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">模板</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+    </ul></li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+    </ul></li>
+    <li><h4>资源列表</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">官方仓库</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Vue 资源</a></li>
+    </ul></li>
+  </ul>
+</li>
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://vuejs.org/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+  </ul>
+</li>
+-->
+
+  </ul>
+  <div class="list">
+    <!--     <h2>
+             Recent Posts
+             <a href="/atom.xml" target="_blank" style="vertical-align: middle; margin-left: 5px">
+                 <img src="/images/feed.png" style="width:15px;height:15px">
+             </a>
+         </h2>-->
+    <ul style="padding:0">
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/1-install/"
+           class="sidebar-link">安装</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/2-index/"
+           class="sidebar-link">介绍</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+        <li><h3>基础使用</h3></li>
+      
+      
+      
+      <li>
+        
+        <a href="/guide/3-simpleMap/"
+           class="sidebar-link">简单地图</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/4-JXMap/"
+           class="sidebar-link">江西地图</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/5-mapSwitch/"
+           class="sidebar-link">底图切换</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/6-addPoints/"
+           class="sidebar-link">添加点</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/7-addPolyLine/"
+           class="sidebar-link">添加线</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/8-addPolygons/"
+           class="sidebar-link">添加面</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/9-CustomCIrcle/"
+           class="sidebar-link">周边搜索</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/guide/10-MeasureTool/"
+           class="sidebar-link">测量</a>
+        
+      </li>
+      
+      
+      
+      <li><h3>进阶</h3></li>
+      
+      
+      <li>
+        
+        <a href="/guide/100-CoordsTransform/"
+           class="sidebar-link current">坐标转换</a>
+        
+      </li>
+      
+      
+      
+      
+      <li><h3>说明</h3></li>
+      
+      <li>
+        
+        <a href="/guide/200-class/"
+           class="sidebar-link">类说明</a>
+        
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<div class="content with-sidebar blog post">
+  
+  <h1>坐标转换</h1>
+  <h4>Apr 5, 2017</h4>
+  <h1 id="CoordsTransform-坐标转换"><a href="#CoordsTransform-坐标转换" class="headerlink" title="CoordsTransform 坐标转换"></a>CoordsTransform 坐标转换</h1><hr>
+<p>一个提供了百度坐标（BD09）、国测局坐标（火星坐标，GCJ02）、和WGS84坐标系之间的转换的工具模块。</p>
+<h2 id="当前互联网地图的坐标系现状"><a href="#当前互联网地图的坐标系现状" class="headerlink" title="当前互联网地图的坐标系现状"></a>当前互联网地图的坐标系现状</h2><h3 id="地球坐标-WGS84"><a href="#地球坐标-WGS84" class="headerlink" title="地球坐标 (WGS84)"></a>地球坐标 (WGS84)</h3><ul>
+<li>国际标准，从 GPS 设备中取出的数据的坐标系</li>
+<li>国际地图提供商使用的坐标系</li>
+</ul>
+<h3 id="火星坐标-GCJ-02-也叫国测局坐标系"><a href="#火星坐标-GCJ-02-也叫国测局坐标系" class="headerlink" title="火星坐标 (GCJ-02)也叫国测局坐标系"></a>火星坐标 (GCJ-02)也叫国测局坐标系</h3><ul>
+<li>中国标准，从国行移动设备中定位获取的坐标数据使用这个坐标系</li>
+<li>国家规定： 国内出版的各种地图系统（包括电子形式），必须至少采用GCJ-02对地理位置进行首次加密。</li>
+</ul>
+<p>###百度坐标 (BD-09)</p>
+<ul>
+<li>百度标准，百度 SDK，百度地图，Geocoding 使用</li>
+</ul>
+<h2 id="开发过程需要注意的事"><a href="#开发过程需要注意的事" class="headerlink" title="开发过程需要注意的事"></a>开发过程需要注意的事</h2><ul>
+<li><p>从设备获取经纬度（GPS）坐标</p>
+<pre><code>如果使用的是百度sdk那么可以获得百度坐标（bd09）或者火星坐标（GCJ02),默认是bd09
+如果使用的是ios的原生定位库，那么获得的坐标是WGS84
+如果使用的是高德sdk,那么获取的坐标是GCJ02
+</code></pre></li>
+<li><p>互联网在线地图使用的坐标系</p>
+<pre><code>火星坐标系：
+        iOS 地图（其实是高德）
+        Google国内地图（.cn域名下）
+        搜搜、阿里云、高德地图、腾讯
+百度坐标系：
+        当然只有百度地图
+WGS84坐标系：
+        国际标准，谷歌国外地图、osm地图等国外的地图一般都是这个
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="示例用法（Example-amp-Usage）"><a href="#示例用法（Example-amp-Usage）" class="headerlink" title="示例用法（Example&amp;Usage）"></a>示例用法（Example&amp;Usage）</h3><figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import CoordsTransform from &apos;./CoordsTransform&apos;</div><div class="line"></div><div class="line">let coordsT = new CoordsTransform();</div><div class="line">console(coordsT.wgs84togcj02(116.404, 39.915)) // [ 116.41024449916938, 39.91640428150164 ]</div><div class="line">console(coordsT.gcj02towgs84(116.404, 39.915)) // [ 116.39775550083061, 39.91359571849836 ]</div><div class="line">console(coordsT.gcj02tobd(116.404, 39.915)) // [ 116.41036949371029, 39.92133699351021 ]</div><div class="line">console(coordsT.bdtogcj02(116.404, 39.915)) // [ 116.39762729119315, 39.90865673957631 ]</div></pre></td></tr></table></figure>
+</div>
+
+                
+            </div>
+            <script src="/js/smooth-scroll.min.js"></script>
+        
+
+        <!-- main custom script for sidebars, version selects etc. -->
+        <script src="/js/common.js"></script>
+
+        <!-- ga -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-46852172-1', 'hdsxtech.github.io');
+          ga('send', 'pageview');
+        </script>
+
+        <!-- search -->
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/css/search.css">
+        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+        <script>
+        [
+          '#search-query-nav',
+          '#search-query-sidebar'
+        ].forEach(function (selector) {
+          if (!document.querySelector(selector)) return
+          // search index defaults to v2
+          var match = window.location.pathname.match(/^\/(v\d+)/)
+          var version = match ? match[1] : 'v2'
+          docsearch({
+            appId: 'BH4D9OD16A',
+            apiKey: '5638280abff9d207417bb03be05f0b25',
+            indexName: 'vuejs_cn2',
+            inputSelector: selector,
+            algoliaOptions: { facetFilters: ["version:" + version] }
+          })
+        })
+        </script>
+
+        <!-- fastclick -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body)
+        }, false)
+        </script>
+    </body>
+</html>

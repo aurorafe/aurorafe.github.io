@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>江西地图 - HMap.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="HMap WEBGIS openlayer">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="江西地图 - HMap.js">
+        <meta property="og:description" content="HMap WEBGIS openlayer">
+        <meta property="og:image" content="https://hdsxtech.github.io/images/logo.png">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="江西地图 - HMap.js">
+        <meta name="twitter:description" content="HMap WEBGIS openlayer">
+        <meta name="twitter:image" content="https://hdsxtech.github.io/images/logo.png">
+
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+
+        <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+
+        <!-- main page styles -->
+        <link rel="stylesheet" href="/css/page.css">
+
+        <!-- this needs to be loaded before guide's inline scripts -->
+        <script src="/js/HMap.js"></script>
+        <script>window.PAGE_TYPE = "api"</script>
+    </head>
+    <body class="docs">        <div id="mobile-bar" >
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.jpg">
+    <span>HMap</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/2-index" class="nav-link">教程</a></li>
+<li><a href="/api/1-index" class="nav-link current">API</a></li>
+<li><a href="/examples/1-index/" class="nav-link">示例</a></li>
+<li><a href="/about/index" class="nav-link">参与贡献</a></li>
+<!--
+<li class="nav-dropdown-container">
+  <a class="nav-link">社区</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+    <li><a href="https://vuejsjob.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+      <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">模板</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+    </ul></li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+    </ul></li>
+    <li><h4>资源列表</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">官方仓库</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Vue 资源</a></li>
+    </ul></li>
+  </ul>
+</li>
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://vuejs.org/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+  </ul>
+</li>
+-->
+
+  </ul>
+</div>
+
+        
+            <div id="main" class="fix-sidebar">
+                
+                    <div class="sidebar blog">
+  <ul class="main-menu">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/2-index" class="nav-link">教程</a></li>
+<li><a href="/api/1-index" class="nav-link current">API</a></li>
+<li><a href="/examples/1-index/" class="nav-link">示例</a></li>
+<li><a href="/about/index" class="nav-link">参与贡献</a></li>
+<!--
+<li class="nav-dropdown-container">
+  <a class="nav-link">社区</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://github.com/vuejs/vue" class="nav-link" target="_blank">GitHub</a></li>
+    <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+    <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+    <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+    <li><a href="https://vuejsjob.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">论坛</a></li>
+      <li><a href="https://gitter.im/vuejs/vue" class="nav-link" target="_blank">聊天室</a></li>
+      <li><a href="https://github.com/vuejs-templates" class="nav-link" target="_blank">模板</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank">工作</a></li>
+    </ul></li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/" class="nav-link" target="_blank">Vuex</a></li>
+    </ul></li>
+    <li><h4>资源列表</h4></li>
+    <li><ul>
+      <li><a href="https://github.com/vuejs" class="nav-link" target="_blank">官方仓库</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank">Vue 资源</a></li>
+    </ul></li>
+  </ul>
+</li>
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="https://cn.vuejs.org/" class="nav-link" target="_blank">中文</a></li>
+    <li><a href="https://vuejs.org/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://jp.vuejs.org/" class="nav-link" target="_blank">日本語</a></li>
+    <li><a href="https://ru.vuejs.org/" class="nav-link" target="_blank">Русский</a></li>
+    <li><a href="https://kr.vuejs.org/" class="nav-link" target="_blank">한국어</a></li>
+  </ul>
+</li>
+-->
+
+  </ul>
+  <div class="list">
+    <!--     <h2>
+             Recent Posts
+             <a href="/atom.xml" target="_blank" style="vertical-align: middle; margin-left: 5px">
+                 <img src="/images/feed.png" style="width:15px;height:15px">
+             </a>
+         </h2>-->
+    <ul style="padding:0">
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/1-index/"
+           class="sidebar-link">简单地图</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/2-JXMap/"
+           class="sidebar-link current">江西地图</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/3-mapSwitch/"
+           class="sidebar-link">底图切换</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/3.1-Layer/"
+           class="sidebar-link">图层</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/3.2-control/"
+           class="sidebar-link">control</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/4-addPoints/"
+           class="sidebar-link">添加点</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/5-addPolyLine/"
+           class="sidebar-link">添加线</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/6-addPolygons/"
+           class="sidebar-link">添加面</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/7-CustomCIrcle/"
+           class="sidebar-link">周边搜索</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+        <a href="/api/8-MeasureTool/"
+           class="sidebar-link">测量</a>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+      
+      
+      
+      <li>
+        
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<div class="content with-sidebar blog post">
+  
+  <h1>江西地图</h1>
+  <h4>Apr 5, 2017</h4>
+  <h3 id="new-HMap-Map-initMap-‘target’-options"><a href="#new-HMap-Map-initMap-‘target’-options" class="headerlink" title="new HMap.Map().initMap(‘target’,options)"></a>new HMap.Map().initMap(‘target’,options)</h3><ul>
+<li><p><strong>参数：</strong><br> _ <code>{String} target</code> </p>
+<ul>
+<li><p><code>{Object} options</code></p>
+<ul>
+<li><p><code>{Object} view</code> 视图</p>
+<ul>
+<li><code>{Array|[x,y]} center</code> 中心点坐标          </li>
+<li><code>{Array} resolutions</code> 分辨率           </li>
+<li><code>{Array} fullExtent</code> 限制范围</li>
+<li><code>{Number} tileSize</code></li>
+<li><code>{Array} origin</code>  切片原点</li>
+<li><code>{Boolean} enableRotation</code> 是否允许旋转</li>
+<li><code>{String} projection</code> 投影坐标系 (EPSG:4326)</li>
+<li><code>{Number} rotation</code> 倾斜角度</li>
+<li><code>{Number} zoom</code> 缩放级别</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>{Object} interactions</code> 交互</p>
+<ul>
+<li><code>{Boolean} mouseWheelZoom</code> 是否允许滚轮缩放</li>
+<li><p><code>{Boolean} doubleClickZoom</code> 是否允许双击放大</p>
+<blockquote>
+<p>更多参数详见 openlayer3 API</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><code>{Array} baseLayers</code> 图层配置</p>
+<ul>
+<li><code>{String} layerName</code> 图层名称，用于图层叠加的标识</li>
+<li><code>{Boolean} isDefault</code> 是否默认显示</li>
+<li><code>{String} layerType</code> 图层类型</li>
+<li><code>{Boolean} opaque</code> 图层是否不透明</li>
+<li><code>{Url} layerUrl</code> 加载图层url地址 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>用法：</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> cor = [</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">0</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">0.010986328383069278</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">4617150</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">1</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">0.005493164191534639</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">2308575</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">2</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">0.0027465809060368165</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">1154287</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">3</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">0.0013732916427489112</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">577144</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">4</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">6.866458213744556E-4</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">288572</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">5</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">3.433229106872278E-4</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">144286</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">6</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">1.716614553436139E-4</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">72143</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">7</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">8.582953794130404E-5</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">36071</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">8</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">4.291595870115493E-5</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">18036</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">9</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">2.1457979350577466E-5</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">9018</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">10</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">1.0728989675288733E-5</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">4509</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">11</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">5.363305107141452E-6</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">2254</span></div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">         <span class="string">"level"</span>: <span class="number">12</span>,</div><div class="line">         <span class="string">"resolution"</span>: <span class="number">2.681652553570726E-6</span>,</div><div class="line">         <span class="string">"scale"</span>: <span class="number">1127</span></div><div class="line">       &#125;</div><div class="line">     ];</div><div class="line"> <span class="keyword">var</span> resolutions = [];</div><div class="line"> <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; cor.length; i++) &#123;</div><div class="line">   resolutions.push(cor[i].resolution);</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">var</span> options = &#123; <span class="comment">// 江西地图配置</span></div><div class="line">    view: &#123;</div><div class="line">        <span class="attr">center</span>: [<span class="number">115.92466595234826</span>, <span class="number">27.428038204473552</span>], <span class="comment">// 地图中心点</span></div><div class="line">        resolutions: resolutions, <span class="comment">// 分辨率</span></div><div class="line">        fullExtent: [<span class="number">109.72859368643232</span>, <span class="number">24.010266905347684</span>, <span class="number">121.13105988819079</span>, <span class="number">30.76693489432357</span>],</div><div class="line">        <span class="attr">tileSize</span>: <span class="number">256</span>,</div><div class="line">        <span class="attr">origin</span>: [<span class="number">-400</span>, <span class="number">399.9999999999998</span>], <span class="comment">// 切片原点</span></div><div class="line">        enableRotation: <span class="literal">true</span>, <span class="comment">// 是否允许旋转</span></div><div class="line">        projection: <span class="string">'EPSG:4326'</span>, <span class="comment">// 投影坐标系</span></div><div class="line">        rotation: <span class="number">0</span>, <span class="comment">// 倾斜角度</span></div><div class="line">        zoom: <span class="number">1</span>, <span class="comment">// resolution</span></div><div class="line">        zoomFactor: <span class="number">2</span> <span class="comment">// 用于约束分变率的缩放因子（高分辨率设备需要注意）</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">interactions</span>: &#123;</div><div class="line">      <span class="attr">altShiftDragRotate</span>: <span class="literal">true</span>, <span class="comment">// 是否允许`alt + shift`拖拽旋转（默认允许）</span></div><div class="line">      doubleClickZoom: <span class="literal">true</span>, <span class="comment">// 是否允许双击放大（默认允许）</span></div><div class="line">      mouseWheelZoom: <span class="literal">true</span>, <span class="comment">// 是否允许滚轮缩放（默认允许）</span></div><div class="line">      shiftDragZoom: <span class="literal">true</span>,  <span class="comment">// 是否允许`shift`加拖拽缩放（默认允许）</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">logo</span>: &#123;&#125;,</div><div class="line">    <span class="attr">baseLayers</span>: [  <span class="comment">// 不传时默认加载OSM地图。</span></div><div class="line">      &#123;</div><div class="line">        <span class="attr">layerName</span>: <span class="string">'vector'</span>,</div><div class="line">        <span class="attr">isDefault</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">layerType</span>: <span class="string">'TileXYZ'</span>,</div><div class="line">        <span class="attr">opaque</span>: <span class="literal">false</span>, <span class="comment">//图层是否不透明</span></div><div class="line">        layerUrl: <span class="string">'http://171.34.40.68:6080/arcgis/rest/services/JXMAP_2016_2/MapServer'</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line"> &#125;</div><div class="line">Maps.initMap(<span class="string">'map'</span>, options)</div></pre></td></tr></table></figure>
+</div>
+
+                
+            </div>
+            <script src="/js/smooth-scroll.min.js"></script>
+        
+
+        <!-- main custom script for sidebars, version selects etc. -->
+        <script src="/js/common.js"></script>
+
+        <!-- ga -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-46852172-1', 'hdsxtech.github.io');
+          ga('send', 'pageview');
+        </script>
+
+        <!-- search -->
+        <link href="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/css/search.css">
+        <script src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+        <script>
+        [
+          '#search-query-nav',
+          '#search-query-sidebar'
+        ].forEach(function (selector) {
+          if (!document.querySelector(selector)) return
+          // search index defaults to v2
+          var match = window.location.pathname.match(/^\/(v\d+)/)
+          var version = match ? match[1] : 'v2'
+          docsearch({
+            appId: 'BH4D9OD16A',
+            apiKey: '5638280abff9d207417bb03be05f0b25',
+            indexName: 'vuejs_cn2',
+            inputSelector: selector,
+            algoliaOptions: { facetFilters: ["version:" + version] }
+          })
+        })
+        </script>
+
+        <!-- fastclick -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body)
+        }, false)
+        </script>
+    </body>
+</html>
